@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gyan Bharti Public School Jewar — King of Calculation</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Rajdhani:wght@400;500;600;700&family=Orbitron:wght@400;700;900&family=Noto+Sans+Devanagari:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #FFD700;
+  --gold2: #FFA500;
+  --deep: #0a0612;
+  --card: #11091e;
+  --card2: #1a0f2e;
+  --accent: #7C3AED;
+  --accent2: #A855F7;
+  --accent3: #EC4899;
+  --text: #F3E8FF;
+  --muted: #9D7DC8;
+  --green: #22C55E;
+  --red: #EF4444;
+  --cyan: #06B6D4;
+  --shadow-gold: 0 0 30px rgba(255,215,0,0.3);
+  --shadow-purple: 0 0 30px rgba(124,58,237,0.4);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Rajdhani', sans-serif;
+  background: var(--deep);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+  cursor: default;
+}
+
+/* ANIMATED BACKGROUND */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 20% 10%, rgba(124,58,237,0.15) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(168,85,247,0.1) 0%, transparent 50%),
+    radial-gradient(ellipse 40% 30% at 50% 50%, rgba(255,215,0,0.05) 0%, transparent 60%);
+  pointer-events: none; z-index: 0;
+}
+
+/* FLOATING PARTICLES */
+.particles { position: fixed; inset: 0; pointer-events: none; z-index: 1; overflow: hidden; }
+.particle {
+  position: absolute; border-radius: 50%;
+  background: var(--gold); opacity: 0.15;
+  animation: float linear infinite;
+}
+@keyframes float {
+  0% { transform: translateY(110vh) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.15; }
+  90% { opacity: 0.1; }
+  100% { transform: translateY(-10vh) rotate(720deg); opacity: 0; }
+}
+
+/* NAVBAR */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(10,6,18,0.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255,215,0,0.2);
+  padding: 0 2rem;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 70px;
+}
+.nav-brand {
+  display: flex; align-items: center; gap: 12px;
+}
+.nav-logo {
+  width: 44px; height: 44px;
+  background: linear-gradient(135deg, var(--gold), var(--gold2));
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem;
+  box-shadow: var(--shadow-gold);
+  animation: pulse-logo 2s ease-in-out infinite;
+}
+@keyframes pulse-logo {
+  0%,100% { box-shadow: 0 0 20px rgba(255,215,0,0.4); }
+  50% { box-shadow: 0 0 40px rgba(255,215,0,0.8); }
+}
+.nav-title {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 0.85rem;
+  color: var(--gold);
+  text-shadow: 0 0 10px rgba(255,215,0,0.4);
+  line-height: 1.2;
+}
+.nav-sub { font-size: 0.65rem; color: var(--muted); font-family: 'Rajdhani', sans-serif; }
+.nav-tabs { display: flex; gap: 4px; }
+.nav-tab {
+  padding: 8px 16px; border-radius: 8px;
+  border: none; background: transparent; color: var(--muted);
+  font-family: 'Rajdhani', sans-serif; font-weight: 600;
+  font-size: 0.85rem; cursor: pointer; transition: all 0.3s;
+  letter-spacing: 0.5px;
+}
+.nav-tab:hover, .nav-tab.active {
+  background: rgba(124,58,237,0.3);
+  color: var(--gold);
+  border-bottom: 2px solid var(--gold);
+}
+.nav-user {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 0.85rem; color: var(--muted);
+}
+.user-badge {
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  padding: 6px 14px; border-radius: 20px;
+  font-weight: 700; color: white; font-size: 0.8rem;
+  cursor: pointer;
+}
+
+/* HERO */
+#hero {
+  position: relative; z-index: 2;
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; padding: 100px 2rem 60px;
+}
+.hero-crown { font-size: 4rem; animation: crown-float 3s ease-in-out infinite; line-height: 1; }
+@keyframes crown-float {
+  0%,100% { transform: translateY(0) rotate(-5deg); }
+  50% { transform: translateY(-15px) rotate(5deg); }
+}
+.hero-badge {
+  display: inline-block; margin: 1rem 0;
+  background: linear-gradient(135deg, rgba(255,215,0,0.15), rgba(255,165,0,0.1));
+  border: 1px solid rgba(255,215,0,0.3);
+  padding: 6px 20px; border-radius: 30px;
+  font-size: 0.85rem; color: var(--gold); letter-spacing: 2px;
+  font-family: 'Orbitron', monospace;
+}
+.hero-title {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: clamp(2.2rem, 6vw, 4.5rem);
+  color: var(--gold);
+  text-shadow: 0 0 40px rgba(255,215,0,0.5), 0 4px 20px rgba(0,0,0,0.5);
+  line-height: 1.1; margin-bottom: 0.5rem;
+}
+.hero-subtitle {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: clamp(1rem, 2.5vw, 1.6rem);
+  color: var(--accent2);
+  margin-bottom: 1rem;
+  text-shadow: 0 0 20px rgba(168,85,247,0.5);
+}
+.hero-desc {
+  max-width: 600px; color: var(--muted);
+  font-size: 1.05rem; line-height: 1.7; margin-bottom: 2rem;
+}
+.hero-devanagari {
+  font-family: 'Noto Sans Devanagari', sans-serif;
+  font-size: 1.3rem; color: rgba(255,215,0,0.6);
+  margin-bottom: 0.3rem; letter-spacing: 1px;
+}
+.hero-stats {
+  display: flex; gap: 2rem; justify-content: center;
+  margin-bottom: 2.5rem; flex-wrap: wrap;
+}
+.hero-stat {
+  text-align: center;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,215,0,0.15);
+  padding: 16px 28px; border-radius: 12px;
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s, border-color 0.3s;
+}
+.hero-stat:hover { transform: translateY(-5px); border-color: rgba(255,215,0,0.4); }
+.hero-stat-num {
+  font-family: 'Orbitron', monospace; font-size: 2rem;
+  color: var(--gold); font-weight: 900;
+}
+.hero-stat-label { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+.hero-cta {
+  display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+}
+.btn-primary {
+  padding: 14px 36px; border-radius: 50px;
+  background: linear-gradient(135deg, var(--gold), var(--gold2));
+  color: #000; font-weight: 800;
+  font-family: 'Rajdhani', sans-serif; font-size: 1rem;
+  border: none; cursor: pointer; letter-spacing: 1px;
+  box-shadow: 0 4px 20px rgba(255,215,0,0.4);
+  transition: all 0.3s; text-transform: uppercase;
+}
+.btn-primary:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 8px 30px rgba(255,215,0,0.6); }
+.btn-secondary {
+  padding: 14px 36px; border-radius: 50px;
+  background: transparent;
+  color: var(--accent2); font-weight: 700;
+  font-family: 'Rajdhani', sans-serif; font-size: 1rem;
+  border: 2px solid var(--accent2); cursor: pointer; letter-spacing: 1px;
+  transition: all 0.3s; text-transform: uppercase;
+}
+.btn-secondary:hover { background: rgba(168,85,247,0.2); transform: translateY(-3px); }
+
+/* SECTIONS */
+section { position: relative; z-index: 2; padding: 60px 2rem; }
+.section-header { text-align: center; margin-bottom: 3rem; }
+.section-eyebrow {
+  font-family: 'Orbitron', monospace; font-size: 0.7rem;
+  color: var(--gold); letter-spacing: 4px; text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+.section-title {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: clamp(1.6rem, 4vw, 2.8rem);
+  color: var(--text);
+  text-shadow: 0 0 20px rgba(168,85,247,0.3);
+}
+.section-title span { color: var(--gold); }
+.section-line {
+  width: 80px; height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--accent2));
+  margin: 1rem auto 0; border-radius: 2px;
+}
+
+/* CARDS GRID */
+.cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; max-width: 1200px; margin: 0 auto; }
+.topic-card {
+  background: var(--card);
+  border: 1px solid rgba(255,215,0,0.12);
+  border-radius: 16px; padding: 28px;
+  cursor: pointer; transition: all 0.4s;
+  position: relative; overflow: hidden;
+}
+.topic-card::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(124,58,237,0.05), transparent);
+  opacity: 0; transition: opacity 0.4s;
+}
+.topic-card:hover { transform: translateY(-8px); border-color: rgba(255,215,0,0.4); box-shadow: var(--shadow-gold); }
+.topic-card:hover::before { opacity: 1; }
+.card-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+.card-title { font-family: 'Cinzel Decorative', serif; font-size: 1rem; color: var(--gold); margin-bottom: 0.5rem; }
+.card-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.6; margin-bottom: 1rem; }
+.card-tag {
+  display: inline-block; padding: 3px 10px;
+  background: rgba(124,58,237,0.2); border: 1px solid rgba(168,85,247,0.3);
+  border-radius: 20px; font-size: 0.72rem; color: var(--accent2);
+  margin-right: 5px; margin-bottom: 4px;
+}
+.card-arrow { float: right; color: var(--gold); font-size: 1.2rem; transition: transform 0.3s; }
+.topic-card:hover .card-arrow { transform: translateX(5px); }
+
+/* PRACTICE ARENA */
+#practice { background: linear-gradient(180deg, transparent, rgba(124,58,237,0.05), transparent); }
+.practice-container { max-width: 900px; margin: 0 auto; }
+.practice-selector {
+  display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-bottom: 2rem;
+}
+.practice-btn {
+  padding: 10px 22px; border-radius: 10px;
+  border: 1px solid rgba(255,215,0,0.2);
+  background: var(--card); color: var(--muted);
+  font-family: 'Rajdhani', sans-serif; font-weight: 600;
+  cursor: pointer; transition: all 0.3s; font-size: 0.9rem;
+}
+.practice-btn.active, .practice-btn:hover {
+  background: rgba(255,215,0,0.15); color: var(--gold);
+  border-color: rgba(255,215,0,0.5);
+  box-shadow: 0 0 15px rgba(255,215,0,0.2);
+}
+
+.quiz-card {
+  background: var(--card);
+  border: 1px solid rgba(255,215,0,0.2);
+  border-radius: 20px; padding: 40px;
+  text-align: center; position: relative; overflow: hidden;
+}
+.quiz-card::after {
+  content: ''; position: absolute;
+  top: -50%; left: -50%; width: 200%; height: 200%;
+  background: conic-gradient(from 0deg at 50% 50%, transparent, rgba(255,215,0,0.03), transparent 60%);
+  animation: rotate-bg 8s linear infinite;
+}
+@keyframes rotate-bg { to { transform: rotate(360deg); } }
+
+.question-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; position: relative; z-index: 1; }
+.question-topic { font-family: 'Orbitron', monospace; font-size: 0.7rem; color: var(--accent2); letter-spacing: 2px; }
+.question-timer {
+  font-family: 'Orbitron', monospace; font-size: 1.5rem; color: var(--gold);
+  font-weight: 900; min-width: 60px; text-align: right;
+  transition: color 0.3s;
+}
+.question-timer.urgent { color: var(--red); animation: tick 1s ease-in-out infinite; }
+@keyframes tick { 0%,100%{transform:scale(1)} 50%{transform:scale(1.2)} }
+
+.question-text {
+  font-family: 'Orbitron', monospace;
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  color: var(--text); font-weight: 900; margin: 1.5rem 0;
+  letter-spacing: 2px; position: relative; z-index: 1;
+  text-shadow: 0 0 30px rgba(168,85,247,0.3);
+}
+.answer-input-wrap { position: relative; z-index: 1; display: flex; gap: 1rem; justify-content: center; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; }
+.answer-input {
+  width: 200px; padding: 16px 24px;
+  background: rgba(255,255,255,0.05);
+  border: 2px solid rgba(255,215,0,0.3);
+  border-radius: 12px; color: var(--text);
+  font-family: 'Orbitron', monospace; font-size: 1.5rem;
+  text-align: center; outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.answer-input:focus { border-color: var(--gold); box-shadow: 0 0 20px rgba(255,215,0,0.2); }
+.answer-input.correct { border-color: var(--green); box-shadow: 0 0 20px rgba(34,197,94,0.3); }
+.answer-input.wrong { border-color: var(--red); box-shadow: 0 0 20px rgba(239,68,68,0.3); }
+
+.feedback-row { position: relative; z-index: 1; min-height: 40px; display: flex; justify-content: center; align-items: center; gap: 1rem; }
+.feedback-text { font-family: 'Orbitron', monospace; font-size: 1rem; font-weight: 700; }
+.feedback-text.correct { color: var(--green); }
+.feedback-text.wrong { color: var(--red); }
+
+.progress-bar-wrap { position: relative; z-index: 1; background: rgba(255,255,255,0.06); border-radius: 10px; height: 8px; overflow: hidden; margin-top: 1.5rem; }
+.progress-bar {
+  height: 100%; border-radius: 10px;
+  background: linear-gradient(90deg, var(--gold), var(--gold2));
+  transition: width 0.5s ease; box-shadow: 0 0 10px rgba(255,215,0,0.4);
+}
+
+/* STATS ROW */
+.stats-row { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem; }
+.stat-pill {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--card); border: 1px solid rgba(255,255,255,0.08);
+  padding: 10px 20px; border-radius: 40px;
+}
+.stat-pill-num { font-family: 'Orbitron', monospace; font-size: 1.2rem; font-weight: 900; }
+.stat-pill-num.gold { color: var(--gold); }
+.stat-pill-num.green { color: var(--green); }
+.stat-pill-num.red { color: var(--red); }
+.stat-pill-num.cyan { color: var(--cyan); }
+.stat-pill-label { font-size: 0.78rem; color: var(--muted); }
+
+/* LEADERBOARD */
+#leaderboard { background: rgba(0,0,0,0.3); }
+.lb-container { max-width: 900px; margin: 0 auto; }
+.lb-tabs { display: flex; gap: 0; margin-bottom: 2rem; background: var(--card); border-radius: 12px; padding: 4px; }
+.lb-tab {
+  flex: 1; padding: 10px; text-align: center;
+  border-radius: 10px; border: none; background: transparent;
+  color: var(--muted); font-family: 'Rajdhani', sans-serif;
+  font-weight: 700; cursor: pointer; transition: all 0.3s; font-size: 0.9rem;
+}
+.lb-tab.active { background: linear-gradient(135deg, var(--accent), var(--accent2)); color: white; }
+.lb-table { width: 100%; border-collapse: collapse; }
+.lb-table th {
+  padding: 12px 16px; text-align: left;
+  font-family: 'Orbitron', monospace; font-size: 0.65rem;
+  color: var(--muted); letter-spacing: 2px; text-transform: uppercase;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.lb-table td { padding: 14px 16px; border-bottom: 1px solid rgba(255,255,255,0.04); vertical-align: middle; }
+.lb-row { transition: background 0.2s; }
+.lb-row:hover { background: rgba(255,215,0,0.04); }
+.lb-row.top1 { background: rgba(255,215,0,0.06); }
+.lb-row.top2 { background: rgba(192,192,192,0.04); }
+.lb-row.top3 { background: rgba(205,127,50,0.04); }
+.rank-badge {
+  width: 32px; height: 32px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Orbitron', monospace; font-size: 0.8rem; font-weight: 900;
+}
+.rank-1 { background: linear-gradient(135deg, #FFD700, #FFA500); color: #000; box-shadow: 0 0 12px rgba(255,215,0,0.5); }
+.rank-2 { background: linear-gradient(135deg, #C0C0C0, #808080); color: #000; }
+.rank-3 { background: linear-gradient(135deg, #CD7F32, #8B5E3C); color: #fff; }
+.rank-other { background: rgba(255,255,255,0.08); color: var(--muted); }
+.lb-name { font-weight: 700; font-size: 0.95rem; color: var(--text); }
+.lb-school { font-size: 0.75rem; color: var(--muted); }
+.lb-score { font-family: 'Orbitron', monospace; font-size: 1.1rem; font-weight: 900; color: var(--gold); }
+.accuracy-bar { background: rgba(255,255,255,0.08); border-radius: 10px; height: 6px; width: 80px; overflow: hidden; display: inline-block; vertical-align: middle; margin-left: 8px; }
+.accuracy-fill { height: 100%; background: linear-gradient(90deg, var(--green), var(--cyan)); border-radius: 10px; }
+.lb-accuracy { font-size: 0.85rem; color: var(--green); display: flex; align-items: center; gap: 6px; }
+.trophy-icon { font-size: 1.1rem; }
+.avg-row {
+  background: rgba(124,58,237,0.1) !important;
+  border-top: 2px solid rgba(124,58,237,0.3) !important;
+}
+.avg-label { color: var(--accent2); font-weight: 700; font-size: 0.85rem; }
+
+/* VEDIC TRICKS */
+.tricks-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; max-width: 1200px; margin: 0 auto; }
+.trick-card {
+  background: var(--card2);
+  border: 1px solid rgba(124,58,237,0.2);
+  border-radius: 16px; padding: 28px; transition: all 0.3s;
+}
+.trick-card:hover { border-color: rgba(168,85,247,0.5); transform: translateY(-4px); box-shadow: var(--shadow-purple); }
+.trick-num {
+  font-family: 'Orbitron', monospace; font-size: 0.7rem;
+  color: var(--accent2); letter-spacing: 3px; margin-bottom: 0.5rem;
+}
+.trick-title { font-family: 'Cinzel Decorative', serif; font-size: 1.05rem; color: var(--gold); margin-bottom: 0.8rem; }
+.trick-example {
+  background: rgba(255,255,255,0.04); border-radius: 10px; padding: 14px;
+  font-family: 'Orbitron', monospace; font-size: 0.85rem; color: var(--text);
+  margin-bottom: 0.8rem; line-height: 1.8;
+}
+.trick-example .highlight { color: var(--gold); font-weight: 700; }
+.trick-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+.try-btn {
+  margin-top: 1rem; padding: 8px 20px;
+  background: rgba(124,58,237,0.2); border: 1px solid rgba(168,85,247,0.3);
+  border-radius: 8px; color: var(--accent2); font-family: 'Rajdhani', sans-serif;
+  font-weight: 700; cursor: pointer; font-size: 0.85rem; transition: all 0.3s;
+}
+.try-btn:hover { background: rgba(124,58,237,0.4); color: white; }
+
+/* MEMORY SECTION */
+.memory-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; max-width: 1100px; margin: 0 auto; }
+.memory-card {
+  background: var(--card); border-radius: 16px; padding: 24px;
+  border: 1px solid rgba(6,182,212,0.2); transition: all 0.3s;
+  text-align: center;
+}
+.memory-card:hover { border-color: rgba(6,182,212,0.5); transform: translateY(-5px); }
+.memory-icon { font-size: 2.8rem; margin-bottom: 1rem; }
+.memory-title { font-family: 'Cinzel Decorative', serif; font-size: 0.95rem; color: var(--cyan); margin-bottom: 0.5rem; }
+.memory-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+
+/* NAME MODAL */
+.modal-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.85);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 200; backdrop-filter: blur(10px);
+}
+.modal-overlay.hidden { display: none; }
+.modal {
+  background: var(--card); border-radius: 24px; padding: 48px;
+  max-width: 480px; width: 90%;
+  border: 1px solid rgba(255,215,0,0.3);
+  box-shadow: 0 0 60px rgba(255,215,0,0.2);
+  text-align: center;
+}
+.modal-crown { font-size: 3.5rem; margin-bottom: 1rem; }
+.modal-title { font-family: 'Cinzel Decorative', serif; font-size: 1.5rem; color: var(--gold); margin-bottom: 0.5rem; }
+.modal-sub { color: var(--muted); font-size: 0.9rem; margin-bottom: 2rem; }
+.modal-input {
+  width: 100%; padding: 14px 20px; border-radius: 12px;
+  background: rgba(255,255,255,0.05);
+  border: 2px solid rgba(255,215,0,0.3);
+  color: var(--text); font-family: 'Rajdhani', sans-serif;
+  font-size: 1rem; outline: none; margin-bottom: 1rem;
+  text-align: center; transition: border-color 0.3s;
+}
+.modal-input:focus { border-color: var(--gold); }
+.modal-class-select { display: flex; gap: 0.8rem; flex-wrap: wrap; justify-content: center; margin-bottom: 1.5rem; }
+.class-opt {
+  padding: 8px 16px; border-radius: 8px;
+  border: 1px solid rgba(255,215,0,0.2);
+  background: transparent; color: var(--muted);
+  cursor: pointer; font-family: 'Rajdhani', sans-serif; font-weight: 600;
+  transition: all 0.3s;
+}
+.class-opt.selected { background: rgba(255,215,0,0.15); color: var(--gold); border-color: rgba(255,215,0,0.5); }
+
+/* RESULT SCREEN */
+.result-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.9);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 150; backdrop-filter: blur(15px);
+}
+.result-overlay.hidden { display: none; }
+.result-card {
+  background: var(--card); border-radius: 24px; padding: 48px;
+  max-width: 520px; width: 90%;
+  border: 1px solid rgba(255,215,0,0.3);
+  text-align: center; position: relative; overflow: hidden;
+}
+.result-stars { font-size: 2.5rem; margin-bottom: 1rem; letter-spacing: 4px; }
+.result-title { font-family: 'Cinzel Decorative', serif; font-size: 1.8rem; color: var(--gold); margin-bottom: 0.5rem; }
+.result-score-big {
+  font-family: 'Orbitron', monospace; font-size: 5rem; font-weight: 900;
+  color: var(--gold); text-shadow: 0 0 40px rgba(255,215,0,0.5);
+  line-height: 1; margin: 1rem 0;
+}
+.result-score-label { color: var(--muted); margin-bottom: 1.5rem; }
+.result-breakdown { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem; }
+.result-stat { text-align: center; }
+.result-stat-num { font-family: 'Orbitron', monospace; font-size: 1.6rem; font-weight: 900; }
+.result-stat-label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+.confetti { position: absolute; pointer-events: none; }
+
+/* SCROLLBAR */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--deep); }
+::-webkit-scrollbar-thumb { background: rgba(255,215,0,0.3); border-radius: 3px; }
+
+/* FOOTER */
+footer {
+  position: relative; z-index: 2;
+  background: rgba(0,0,0,0.5);
+  border-top: 1px solid rgba(255,215,0,0.1);
+  padding: 40px 2rem; text-align: center;
+}
+.footer-logo { font-family: 'Cinzel Decorative', serif; font-size: 1.2rem; color: var(--gold); margin-bottom: 0.5rem; }
+.footer-sub { font-size: 0.8rem; color: var(--muted); }
+.footer-author { margin-top: 1rem; font-size: 0.8rem; color: rgba(168,85,247,0.6); }
+.footer-author span { color: var(--accent2); }
+
+/* RESPONSIVENESS */
+@media (max-width: 768px) {
+  .nav-tabs { display: none; }
+  .hero-stats { gap: 1rem; }
+  .quiz-card { padding: 24px 16px; }
+  .lb-table th:nth-child(4), .lb-table td:nth-child(4) { display: none; }
+}
+
+/* SMOOTH SCROLL */
+html { scroll-behavior: smooth; }
+
+/* GLOW PULSE */
+.glow-text {
+  animation: glow-pulse 2s ease-in-out infinite alternate;
+}
+@keyframes glow-pulse {
+  from { text-shadow: 0 0 10px rgba(255,215,0,0.3); }
+  to { text-shadow: 0 0 30px rgba(255,215,0,0.8), 0 0 60px rgba(255,165,0,0.4); }
+}
+
+.slide-in { animation: slideIn 0.6s ease forwards; opacity: 0; }
+@keyframes slideIn { from { opacity:0; transform: translateY(30px); } to { opacity:1; transform:translateY(0); } }
+</style>
+</head>
+<body>
+
+<!-- PARTICLES -->
+<div class="particles" id="particles"></div>
+
+<!-- NAME MODAL -->
+<div class="modal-overlay" id="nameModal">
+  <div class="modal">
+    <div class="modal-crown">👑</div>
+    <div class="modal-title">Enter the Arena</div>
+    <div class="modal-sub">Gyan Bharti Public School, Jewar</div>
+    <input class="modal-input" id="playerName" placeholder="Your Name" maxlength="30">
+    <div style="font-size:0.8rem;color:var(--muted);margin-bottom:0.8rem;">Select Your Class</div>
+    <div class="modal-class-select" id="classSelector">
+      <button class="class-opt" onclick="selectClass(this,'6')">Class 6</button>
+      <button class="class-opt" onclick="selectClass(this,'7')">Class 7</button>
+      <button class="class-opt" onclick="selectClass(this,'8')">Class 8</button>
+      <button class="class-opt" onclick="selectClass(this,'9')">Class 9</button>
+      <button class="class-opt" onclick="selectClass(this,'10')">Class 10</button>
+    </div>
+    <button class="btn-primary" onclick="startJourney()" style="width:100%;">Begin Your Journey ✨</button>
+  </div>
+</div>
+
+<!-- RESULT OVERLAY -->
+<div class="result-overlay hidden" id="resultOverlay">
+  <div class="result-card">
+    <div class="result-stars" id="resultStars">⭐⭐⭐</div>
+    <div class="result-title" id="resultTitle">Excellent!</div>
+    <div class="result-score-big" id="resultScoreBig">0</div>
+    <div class="result-score-label">POINTS EARNED</div>
+    <div class="result-breakdown" id="resultBreakdown"></div>
+    <button class="btn-primary" onclick="closeResult()" style="margin-right:1rem">Practice More</button>
+    <button class="btn-secondary" onclick="goLeaderboard()">View Leaderboard</button>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">
+    <div class="nav-logo">🧮</div>
+    <div>
+      <div class="nav-title">GYAN BHARTI</div>
+      <div class="nav-sub">Public School, Jewar · King of Calculation</div>
+    </div>
+  </div>
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="scrollTo('hero')">Home</button>
+    <button class="nav-tab" onclick="scrollTo('topics')">Topics</button>
+    <button class="nav-tab" onclick="scrollTo('practice')">Practice</button>
+    <button class="nav-tab" onclick="scrollTo('vedic')">Vedic Math</button>
+    <button class="nav-tab" onclick="scrollTo('leaderboard')">Leaderboard</button>
+    <button class="nav-tab" onclick="scrollTo('memory')">Memory</button>
+  </div>
+  <div class="nav-user">
+    <span id="navPlayerName" style="color:var(--gold);font-weight:700;font-family:'Orbitron',monospace;font-size:0.8rem;">Guest</span>
+    <div class="user-badge" onclick="document.getElementById('nameModal').classList.remove('hidden')">Change</div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-crown">👑</div>
+  <div class="hero-devanagari">ज्ञान भारती पब्लिक स्कूल, जेवर</div>
+  <div class="hero-badge">◈ RAJA SIR'S CALCULATION MASTERY ◈</div>
+  <h1 class="hero-title glow-text">King of Calculation</h1>
+  <h2 class="hero-subtitle">Vedic Math · Mental Arithmetic · Memory Techniques</h2>
+  <p class="hero-desc">Master the ancient art of Vedic Mathematics and modern calculation tricks. Train your mind to calculate at lightning speed, develop photographic memory, and rise to the top of the leaderboard.</p>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-num" id="heroTotalStudents">247</div>
+      <div class="hero-stat-label">Students</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num" id="heroQSolved">12,840</div>
+      <div class="hero-stat-label">Questions Solved</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num" id="heroAvgAcc">78%</div>
+      <div class="hero-stat-label">Avg Accuracy</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">∞</div>
+      <div class="hero-stat-label">Tricks to Master</div>
+    </div>
+  </div>
+  <div class="hero-cta">
+    <button class="btn-primary" onclick="scrollTo('practice')">⚡ Start Practice</button>
+    <button class="btn-secondary" onclick="scrollTo('vedic')">📖 Vedic Tricks</button>
+  </div>
+</section>
+
+<!-- TOPICS -->
+<section id="topics">
+  <div class="section-header">
+    <div class="section-eyebrow">◈ CHOOSE YOUR PATH ◈</div>
+    <h2 class="section-title">Topics to <span>Master</span></h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="cards-grid">
+    <div class="topic-card" onclick="startTopic('vedic')">
+      <div class="card-icon">🏛️</div>
+      <div class="card-title">Vedic Mathematics</div>
+      <div class="card-desc">Ancient Indian system for lightning-fast calculations. Raja Sir's curated sutras for maximum speed.</div>
+      <div><span class="card-tag">Multiplication</span><span class="card-tag">Division</span><span class="card-tag">Sutras</span></div>
+      <span class="card-arrow">→</span>
+    </div>
+    <div class="topic-card" onclick="startTopic('mental')">
+      <div class="card-icon">🧠</div>
+      <div class="card-title">Mental Arithmetic</div>
+      <div class="card-desc">Train your brain for instant calculations. Speed drills, timed challenges, accuracy tracking.</div>
+      <div><span class="card-tag">Addition</span><span class="card-tag">Subtraction</span><span class="card-tag">Speed</span></div>
+      <span class="card-arrow">→</span>
+    </div>
+    <div class="topic-card" onclick="startTopic('squares')">
+      <div class="card-icon">⚡</div>
+      <div class="card-title">Squares & Cubes</div>
+      <div class="card-desc">Master instant squaring using Duplex method. Calculate x² in seconds using Vedic techniques.</div>
+      <div><span class="card-tag">Squares</span><span class="card-tag">Cubes</span><span class="card-tag">Powers</span></div>
+      <span class="card-arrow">→</span>
+    </div>
+    <div class="topic-card" onclick="startTopic('fractions')">
+      <div class="card-icon">🎯</div>
+      <div class="card-title">Fractions & Percentages</div>
+      <div class="card-desc">Master the art of fractional calculations and percentage tricks used in competitive exams.</div>
+      <div><span class="card-tag">Fractions</span><span class="card-tag">%</span><span class="card-tag">Ratios</span></div>
+      <span class="card-arrow">→</span>
+    </div>
+    <div class="topic-card" onclick="startTopic('tables')">
+      <div class="card-icon">📊</div>
+      <div class="card-title">Tables Mastery</div>
+      <div class="card-desc">From 2 to 50 — master multiplication tables using pattern recognition and memory techniques.</div>
+      <div><span class="card-tag">Tables 2-50</span><span class="card-tag">Patterns</span></div>
+      <span class="card-arrow">→</span>
+    </div>
+    <div class="topic-card" onclick="startTopic('memory')">
+      <div class="card-icon">🌟</div>
+      <div class="card-title">Memory Techniques</div>
+      <div class="card-desc">Major System, Mind Palace, Peg System — remember numbers and formulas forever.</div>
+      <div><span class="card-tag">Major System</span><span class="card-tag">Palace</span><span class="card-tag">Pegs</span></div>
+      <span class="card-arrow">→</span>
+    </div>
+  </div>
+</section>
+
+<!-- PRACTICE ARENA -->
+<section id="practice">
+  <div class="section-header">
+    <div class="section-eyebrow">◈ PRACTICE ARENA ◈</div>
+    <h2 class="section-title">⚡ <span>Calculation</span> Challenge</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="practice-container">
+    <div class="stats-row">
+      <div class="stat-pill">
+        <div class="stat-pill-num gold" id="scoreDisplay">0</div>
+        <div class="stat-pill-label">Score</div>
+      </div>
+      <div class="stat-pill">
+        <div class="stat-pill-num green" id="correctDisplay">0</div>
+        <div class="stat-pill-label">Correct</div>
+      </div>
+      <div class="stat-pill">
+        <div class="stat-pill-num red" id="wrongDisplay">0</div>
+        <div class="stat-pill-label">Wrong</div>
+      </div>
+      <div class="stat-pill">
+        <div class="stat-pill-num cyan" id="accuracyDisplay">--%</div>
+        <div class="stat-pill-label">Accuracy</div>
+      </div>
+      <div class="stat-pill">
+        <div class="stat-pill-num gold" id="streakDisplay">🔥 0</div>
+        <div class="stat-pill-label">Streak</div>
+      </div>
+    </div>
+
+    <div class="practice-selector">
+      <button class="practice-btn active" onclick="setMode('mixed','Mixed')">🎲 Mixed</button>
+      <button class="practice-btn" onclick="setMode('add','Addition')">➕ Addition</button>
+      <button class="practice-btn" onclick="setMode('sub','Subtraction')">➖ Subtraction</button>
+      <button class="practice-btn" onclick="setMode('mul','Multiplication')">✖ Multiply</button>
+      <button class="practice-btn" onclick="setMode('div','Division')">➗ Division</button>
+      <button class="practice-btn" onclick="setMode('sq','Squares')">² Squares</button>
+      <button class="practice-btn" onclick="setMode('vedic','Vedic')">🏛️ Vedic</button>
+    </div>
+
+    <div class="quiz-card">
+      <div class="question-meta">
+        <div class="question-topic" id="questionTopic">MIXED ARITHMETIC</div>
+        <div class="question-timer" id="timerDisplay">15</div>
+      </div>
+      <div style="font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem;font-family:'Orbitron',monospace;" id="hintText"></div>
+      <div class="question-text" id="questionText">Press Start to Begin</div>
+      <div class="answer-input-wrap">
+        <input class="answer-input" id="answerInput" type="number" placeholder="?" disabled onkeydown="handleKey(event)">
+        <button class="btn-primary" id="mainBtn" onclick="handleMainBtn()" style="padding:14px 28px;">START</button>
+      </div>
+      <div class="feedback-row">
+        <div class="feedback-text" id="feedbackText"></div>
+      </div>
+      <div style="margin-top:1rem;font-size:0.8rem;color:var(--muted);" id="questionCount">Question 0 / 10</div>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar" id="progressBar" style="width:0%"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VEDIC MATH -->
+<section id="vedic">
+  <div class="section-header">
+    <div class="section-eyebrow">◈ RAJA SIR'S BOOK CONCEPTS ◈</div>
+    <h2 class="section-title">Vedic <span>Math Tricks</span></h2>
+    <div class="section-line"></div>
+    <p style="color:var(--muted);margin-top:1rem;max-width:600px;margin-left:auto;margin-right:auto;font-size:0.9rem;">Ancient Sutras from Vedic Mathematics, curated and taught by Raja Sir for competitive exam mastery</p>
+  </div>
+  <div class="tricks-grid">
+    <div class="trick-card">
+      <div class="trick-num">SUTRA 01</div>
+      <div class="trick-title">Ekadhikena Purvena · ×11 Trick</div>
+      <div class="trick-example">
+        47 × 11 = ?<br>
+        Step: 4 _ 7 → middle = 4+7 = <span class="highlight">11</span><br>
+        Answer: 4+1 | 1 | 7 = <span class="highlight">517</span>
+      </div>
+      <div class="trick-desc">Add adjacent digits and place sum in the middle. Carry if sum > 9. Works for any 2-digit × 11.</div>
+      <button class="try-btn" onclick="startTopic('mul')">Try Practice →</button>
+    </div>
+    <div class="trick-card">
+      <div class="trick-num">SUTRA 02</div>
+      <div class="trick-title">Nikhilam Sutra · Near Base Method</div>
+      <div class="trick-example">
+        97 × 98 = ?<br>
+        Deficits: <span class="highlight">-3</span> and <span class="highlight">-2</span><br>
+        Left: 97-2 = 95 | Right: 3×2 = <span class="highlight">06</span><br>
+        Answer: <span class="highlight">9506</span>
+      </div>
+      <div class="trick-desc">For numbers near a base (10, 100, 1000). Subtract from base, multiply the deficits, combine. Incredibly fast!</div>
+      <button class="try-btn" onclick="setMode('vedic','Vedic');scrollTo('practice')">Try Practice →</button>
+    </div>
+    <div class="trick-card">
+      <div class="trick-num">SUTRA 03</div>
+      <div class="trick-title">Anurupyena · Squaring Numbers Ending in 5</div>
+      <div class="trick-example">
+        75² = ?<br>
+        Left: 7 × (7+1) = 7 × 8 = <span class="highlight">56</span><br>
+        Right: always <span class="highlight">25</span><br>
+        Answer: <span class="highlight">5625</span>
+      </div>
+      <div class="trick-desc">Any number ending in 5: multiply the first digit(s) by (itself+1), then append 25. Works for 2, 3, 4 digit numbers!</div>
+      <button class="try-btn" onclick="setMode('sq','Squares');scrollTo('practice')">Try Practice →</button>
+    </div>
+    <div class="trick-card">
+      <div class="trick-num">SUTRA 04</div>
+      <div class="trick-title">Yavadunam · Squaring Near 50</div>
+      <div class="trick-example">
+        48² = ?<br>
+        Deficit from 50: <span class="highlight">-2</span><br>
+        Left: 25 - 2 = <span class="highlight">23</span><br>
+        Right: 2² = <span class="highlight">04</span><br>
+        Answer: <span class="highlight">2304</span>
+      </div>
+      <div class="trick-desc">For squaring numbers near 50. Adjust from 25 by the deviation, then square the deviation. Quick and elegant!</div>
+      <button class="try-btn" onclick="setMode('sq','Squares');scrollTo('practice')">Try Practice →</button>
+    </div>
+    <div class="trick-card">
+      <div class="trick-num">SUTRA 05</div>
+      <div class="trick-title">Vinculum · Complement Method</div>
+      <div class="trick-example">
+        Multiply by 9:<br>
+        456 × 9 = 456 × (10-1)<br>
+        = 4560 - 456 = <span class="highlight">4104</span><br>
+        Or: 456 | remove last digit | subtract = <span class="highlight">4104</span>
+      </div>
+      <div class="trick-desc">Multiplying by 9, 99, 999: Use (10ⁿ - 1) pattern. Shift digits left then subtract original. Works for any number!</div>
+      <button class="try-btn" onclick="setMode('mul','Multiplication');scrollTo('practice')">Try Practice →</button>
+    </div>
+    <div class="trick-card">
+      <div class="trick-num">SUTRA 06</div>
+      <div class="trick-title">Urdhva Tiryak · Vertical & Crosswise</div>
+      <div class="trick-example">
+        23 × 45 = ?<br>
+        Right: 3×5 = <span class="highlight">15</span> → write 5, carry 1<br>
+        Cross: 2×5+3×4 = 22+1 = <span class="highlight">23</span> → write 3, carry 2<br>
+        Left: 2×4+2 = <span class="highlight">10</span><br>
+        Answer: <span class="highlight">1035</span>
+      </div>
+      <div class="trick-desc">The universal multiplication method! Multiply vertically and crosswise. Works for any size multiplication.</div>
+      <button class="try-btn" onclick="setMode('mul','Multiplication');scrollTo('practice')">Try Practice →</button>
+    </div>
+  </div>
+</section>
+
+<!-- MEMORY TECHNIQUES -->
+<section id="memory">
+  <div class="section-header">
+    <div class="section-eyebrow">◈ MIND POWER ◈</div>
+    <h2 class="section-title">Memory <span>Techniques</span></h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="memory-grid">
+    <div class="memory-card">
+      <div class="memory-icon">🏰</div>
+      <div class="memory-title">Mind Palace</div>
+      <div class="memory-desc">Associate numbers and formulas with locations in a familiar place. Walk through your house and recall anything!</div>
+    </div>
+    <div class="memory-card">
+      <div class="memory-icon">🔢</div>
+      <div class="memory-title">Major System</div>
+      <div class="memory-desc">Convert numbers to consonant sounds, then form words. 1=T, 2=N, 3=M, 4=R, 5=L, 6=Ch, 7=K, 8=F, 9=P, 0=S</div>
+    </div>
+    <div class="memory-card">
+      <div class="memory-icon">📌</div>
+      <div class="memory-title">Peg System</div>
+      <div class="memory-desc">Link numbers 1-100 to pre-memorized peg words. Create vivid stories connecting pegs to new information.</div>
+    </div>
+    <div class="memory-card">
+      <div class="memory-icon">🧩</div>
+      <div class="memory-title">Chunking</div>
+      <div class="memory-desc">Break long numbers into meaningful chunks. Phone numbers, π digits, and formulas become easy with practice.</div>
+    </div>
+    <div class="memory-card">
+      <div class="memory-icon">🔄</div>
+      <div class="memory-title">Spaced Repetition</div>
+      <div class="memory-desc">Review learned material at increasing intervals. The forgetting curve is defeated by reviewing just before you forget.</div>
+    </div>
+    <div class="memory-card">
+      <div class="memory-icon">🎨</div>
+      <div class="memory-title">Visualization</div>
+      <div class="memory-desc">Make numbers and equations vivid, colorful, and emotional. The stranger the image, the better it sticks in memory.</div>
+    </div>
+  </div>
+</section>
+
+<!-- LEADERBOARD -->
+<section id="leaderboard">
+  <div class="section-header">
+    <div class="section-eyebrow">◈ HALL OF FAME ◈</div>
+    <h2 class="section-title">🏆 <span>Leaderboard</span></h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="lb-container">
+    <div class="lb-tabs">
+      <button class="lb-tab active" onclick="showLbTab('all',this)">All Students</button>
+      <button class="lb-tab" onclick="showLbTab('daily',this)">Today</button>
+      <button class="lb-tab" onclick="showLbTab('week',this)">This Week</button>
+    </div>
+    <div style="overflow-x:auto">
+      <table class="lb-table" id="lbTable">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Student</th>
+            <th>Score</th>
+            <th>Accuracy</th>
+            <th>Streak</th>
+            <th>Badge</th>
+          </tr>
+        </thead>
+        <tbody id="lbBody"></tbody>
+      </table>
+    </div>
+    <!-- AVERAGE ROW -->
+    <div style="margin-top:1rem;padding:16px 20px;background:rgba(124,58,237,0.08);border:1px solid rgba(124,58,237,0.2);border-radius:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+      <div>
+        <div class="avg-label">📊 Class Average</div>
+        <div style="font-size:0.8rem;color:var(--muted)">Based on all students</div>
+      </div>
+      <div style="display:flex;gap:2rem;flex-wrap:wrap">
+        <div><div id="avgScore" style="font-family:'Orbitron',monospace;font-size:1.3rem;color:var(--accent2);font-weight:900;">—</div><div style="font-size:0.75rem;color:var(--muted)">Avg Score</div></div>
+        <div><div id="avgAccuracy" style="font-family:'Orbitron',monospace;font-size:1.3rem;color:var(--green);font-weight:900;">—</div><div style="font-size:0.75rem;color:var(--muted)">Avg Accuracy</div></div>
+        <div><div id="avgStreak" style="font-family:'Orbitron',monospace;font-size:1.3rem;color:var(--cyan);font-weight:900;">—</div><div style="font-size:0.75rem;color:var(--muted)">Avg Streak</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">👑 Gyan Bharti Public School, Jewar</div>
+  <div class="footer-sub">King of Calculation · Vedic Mathematics · Mental Arithmetic · Memory Mastery</div>
+  <div class="footer-sub" style="margin-top:0.5rem;font-family:'Noto Sans Devanagari',sans-serif;color:rgba(255,215,0,0.5)">ज्ञान ही शक्ति है · Knowledge is Power</div>
+  <div class="footer-author">Designed by <span>Ominshan King</span> · @OminshanKing</div>
+</footer>
+
+<script>
+// ---- PARTICLES ----
+(function(){
+  const c = document.getElementById('particles');
+  for(let i=0;i<25;i++){
+    const p = document.createElement('div');
+    p.className='particle';
+    const s=Math.random()*5+2;
+    p.style.cssText=`width:${s}px;height:${s}px;left:${Math.random()*100}%;animation-duration:${Math.random()*20+10}s;animation-delay:${Math.random()*10}s;`;
+    if(i%3===0) p.style.background='var(--accent2)';
+    if(i%5===0) p.style.background='var(--cyan)';
+    c.appendChild(p);
+  }
+})();
+
+// ---- STATE ----
+let playerName='Guest', playerClass='';
+let score=0, correct=0, wrong=0, streak=0, maxStreak=0;
+let questionCount=0, maxQuestions=10;
+let currentAnswer=0, timerVal=15, timerInterval=null;
+let gameMode='mixed', gameActive=false, gameStarted=false;
+let currentTopic='MIXED ARITHMETIC';
+
+// ---- LEADERBOARD DATA ----
+const lbData = [
+  {name:'Aryan Sharma',cl:'10',score:4850,acc:94,streak:22,badge:'🏆 Vedic Master'},
+  {name:'Priya Gupta',cl:'9',score:4230,acc:91,streak:18,badge:'⭐ Speed Star'},
+  {name:'Rahul Verma',cl:'10',score:3980,acc:89,streak:15,badge:'🔥 Calculation King'},
+  {name:'Sneha Yadav',cl:'9',score:3650,acc:86,streak:12,badge:'💎 Math Wizard'},
+  {name:'Amit Kumar',cl:'8',score:3120,acc:83,streak:10,badge:'🎯 Sharpshooter'},
+  {name:'Kavita Singh',cl:'10',score:2890,acc:81,streak:9,badge:'⚡ Lightning'},
+  {name:'Rohit Mishra',cl:'7',score:2540,acc:78,streak:8,badge:'🌟 Rising Star'},
+  {name:'Anita Pal',cl:'8',score:2210,acc:75,streak:6,badge:'📚 Diligent'},
+  {name:'Vikash Tiwari',cl:'9',score:1980,acc:72,streak:5,badge:'🎖 Scholar'},
+  {name:'Deepa Rai',cl:'6',score:1650,acc:69,streak:4,badge:'🌱 Sprouting'},
+];
+
+function showLbTab(tab, el) {
+  document.querySelectorAll('.lb-tab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  renderLeaderboard(tab);
+}
+
+function renderLeaderboard(tab='all') {
+  let data = [...lbData];
+  if(tab==='daily') data = data.slice(0,5).map(d=>({...d,score:Math.floor(d.score*0.3)}));
+  if(tab==='week') data = data.slice(0,8).map(d=>({...d,score:Math.floor(d.score*0.7)}));
+
+  // Insert player if scored
+  if(score>0) {
+    const existing = data.findIndex(d=>d.name===playerName);
+    if(existing>=0) data.splice(existing,1);
+    data.push({name:playerName+'★',cl:playerClass,score:score,acc:correct+wrong>0?Math.round(correct/(correct+wrong)*100):0,streak:maxStreak,badge:'🆕 You'});
+    data.sort((a,b)=>b.score-a.score);
+  }
+
+  const body = document.getElementById('lbBody');
+  body.innerHTML='';
+  const rowClasses=['top1','top2','top3','','','','','','',''];
+  const rankClasses=['rank-1','rank-2','rank-3','rank-other','rank-other','rank-other','rank-other','rank-other','rank-other','rank-other'];
+
+  data.forEach((s,i)=>{
+    const tr=document.createElement('tr');
+    tr.className='lb-row '+(rowClasses[i]||'');
+    tr.innerHTML=`
+      <td><div class="rank-badge ${rankClasses[i]||'rank-other'}">${i<3?['🥇','🥈','🥉'][i]:i+1}</div></td>
+      <td><div class="lb-name">${s.name}</div><div class="lb-school">Class ${s.cl} · GBPS Jewar</div></td>
+      <td><div class="lb-score">${s.score.toLocaleString()}</div></td>
+      <td><div class="lb-accuracy"><span>${s.acc}%</span><div class="accuracy-bar"><div class="accuracy-fill" style="width:${s.acc}%"></div></div></div></td>
+      <td style="font-family:'Orbitron',monospace;font-size:0.9rem;color:var(--cyan)">🔥${s.streak}</td>
+      <td style="font-size:0.78rem;color:var(--muted)">${s.badge||''}</td>
+    `;
+    body.appendChild(tr);
+  });
+
+  const avgS=Math.round(data.reduce((a,d)=>a+d.score,0)/data.length);
+  const avgA=Math.round(data.reduce((a,d)=>a+d.acc,0)/data.length);
+  const avgStr=Math.round(data.reduce((a,d)=>a+d.streak,0)/data.length);
+  document.getElementById('avgScore').textContent=avgS.toLocaleString();
+  document.getElementById('avgAccuracy').textContent=avgA+'%';
+  document.getElementById('avgStreak').textContent='🔥'+avgStr;
+}
+
+// ---- PLAYER SETUP ----
+let selectedClass='';
+function selectClass(el, cls) {
+  document.querySelectorAll('.class-opt').forEach(e=>e.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedClass=cls;
+}
+function startJourney(){
+  const n=document.getElementById('playerName').value.trim();
+  if(!n){document.getElementById('playerName').focus();return;}
+  playerName=n; playerClass=selectedClass||'?';
+  document.getElementById('navPlayerName').textContent=n;
+  document.getElementById('nameModal').classList.add('hidden');
+  renderLeaderboard();
+}
+
+// ---- QUESTIONS ----
+const vedicQuestions=[
+  {q:'47 × 11 = ?', a:517, hint:'11-Trick: 4 _ 7 → 4+(4+7) _ 7'},
+  {q:'63 × 11 = ?', a:693, hint:'11-Trick: 6 _ 3 → middle=6+3=9'},
+  {q:'97 × 98 = ?', a:9506, hint:'Nikhilam: deficits -3,-2 → 95|06'},
+  {q:'96 × 94 = ?', a:9024, hint:'Nikhilam: deficits -4,-6 → 90|24'},
+  {q:'75² = ?', a:5625, hint:'Ends in 5: 7×8=56, append 25'},
+  {q:'85² = ?', a:7225, hint:'Ends in 5: 8×9=72, append 25'},
+  {q:'45² = ?', a:2025, hint:'Ends in 5: 4×5=20, append 25'},
+  {q:'48² = ?', a:2304, hint:'Near 50: 25-2=23, 2²=04'},
+  {q:'52² = ?', a:2704, hint:'Near 50: 25+2=27, 2²=04'},
+  {q:'456 × 9 = ?', a:4104, hint:'×9 = ×(10-1): 4560-456=4104'},
+];
+function getRandomQ(mode){
+  if(mode==='vedic'){
+    const v=vedicQuestions[Math.floor(Math.random()*vedicQuestions.length)];
+    return {q:v.q, a:v.a, hint:v.hint, topic:'VEDIC SUTRA'};
+  }
+  let a,b,ans,qText,topic;
+  const ops={'add':'+','sub':'-','mul':'×','div':'÷','sq':'²','mixed':''};
+  let op=mode;
+  if(mode==='mixed'){
+    const choices=['add','sub','mul','div','sq'];
+    op=choices[Math.floor(Math.random()*choices.length)];
+  }
+  if(op==='add'){a=Math.floor(Math.random()*900)+100;b=Math.floor(Math.random()*900)+100;ans=a+b;qText=`${a} + ${b}`;topic='ADDITION';}
+  else if(op==='sub'){a=Math.floor(Math.random()*900)+200;b=Math.floor(Math.random()*a*0.7)+10;ans=a-b;qText=`${a} − ${b}`;topic='SUBTRACTION';}
+  else if(op==='mul'){a=Math.floor(Math.random()*90)+11;b=Math.floor(Math.random()*12)+2;ans=a*b;qText=`${a} × ${b}`;topic='MULTIPLICATION';}
+  else if(op==='div'){b=Math.floor(Math.random()*11)+2;ans=Math.floor(Math.random()*50)+5;a=b*ans;qText=`${a} ÷ ${b}`;topic='DIVISION';}
+  else if(op==='sq'){a=Math.floor(Math.random()*40)+11;ans=a*a;qText=`${a}²`;topic='SQUARES';}
+  return {q:qText+' = ?', a:ans, hint:'', topic};
+}
+
+// ---- GAME LOGIC ----
+function setMode(mode,label){
+  gameMode=mode;
+  document.querySelectorAll('.practice-btn').forEach(b=>b.classList.remove('active'));
+  event.target.classList.add('active');
+  if(gameStarted) { clearTimer(); nextQuestion(); }
+}
+
+function handleMainBtn(){
+  if(!gameStarted){
+    startGame(); return;
+  }
+  checkAnswer();
+}
+
+function startGame(){
+  gameStarted=true; gameActive=true;
+  score=0;correct=0;wrong=0;streak=0;maxStreak=0;questionCount=0;
+  updateStats();
+  document.getElementById('mainBtn').textContent='SUBMIT';
+  document.getElementById('answerInput').disabled=false;
+  nextQuestion();
+}
+
+function nextQuestion(){
+  if(questionCount>=maxQuestions){endGame();return;}
+  const {q,a,hint,topic}=getRandomQ(gameMode);
+  currentAnswer=a; currentTopic=topic;
+  document.getElementById('questionText').textContent=q;
+  document.getElementById('questionTopic').textContent=topic;
+  document.getElementById('hintText').textContent=hint?'💡 Hint: '+hint:'';
+  document.getElementById('answerInput').value='';
+  document.getElementById('answerInput').className='answer-input';
+  document.getElementById('feedbackText').textContent='';
+  document.getElementById('feedbackText').className='feedback-text';
+  document.getElementById('questionCount').textContent=`Question ${questionCount+1} / ${maxQuestions}`;
+  document.getElementById('progressBar').style.width=(questionCount/maxQuestions*100)+'%';
+  document.getElementById('answerInput').focus();
+  startTimer();
+}
+
+function startTimer(){
+  clearTimer();
+  timerVal=15;
+  document.getElementById('timerDisplay').textContent=timerVal;
+  document.getElementById('timerDisplay').classList.remove('urgent');
+  timerInterval=setInterval(()=>{
+    timerVal--;
+    document.getElementById('timerDisplay').textContent=timerVal;
+    if(timerVal<=5) document.getElementById('timerDisplay').classList.add('urgent');
+    if(timerVal<=0){ clearTimer(); autoWrong(); }
+  },1000);
+}
+function clearTimer(){ clearInterval(timerInterval); }
+
+function checkAnswer(){
+  if(!gameActive) return;
+  const val=parseInt(document.getElementById('answerInput').value);
+  if(isNaN(val)) return;
+  clearTimer();
+  if(val===currentAnswer){
+    correct++;streak++;if(streak>maxStreak)maxStreak=streak;
+    const bonus=timerVal*5;
+    score+=100+bonus;
+    document.getElementById('answerInput').classList.add('correct');
+    document.getElementById('feedbackText').textContent=`✅ Correct! +${100+bonus} pts`;
+    document.getElementById('feedbackText').className='feedback-text correct';
+  } else {
+    wrong++;streak=0;
+    document.getElementById('answerInput').classList.add('wrong');
+    document.getElementById('feedbackText').textContent=`❌ Wrong! Answer: ${currentAnswer}`;
+    document.getElementById('feedbackText').className='feedback-text wrong';
+  }
+  questionCount++;
+  updateStats();
+  setTimeout(()=>{nextQuestion();},1200);
+}
+
+function autoWrong(){
+  wrong++;streak=0;questionCount++;
+  document.getElementById('feedbackText').textContent=`⏰ Time's up! Answer: ${currentAnswer}`;
+  document.getElementById('feedbackText').className='feedback-text wrong';
+  updateStats();
+  setTimeout(()=>nextQuestion(),1200);
+}
+
+function handleKey(e){ if(e.key==='Enter'&&gameStarted) checkAnswer(); }
+
+function updateStats(){
+  document.getElementById('scoreDisplay').textContent=score.toLocaleString();
+  document.getElementById('correctDisplay').textContent=correct;
+  document.getElementById('wrongDisplay').textContent=wrong;
+  const total=correct+wrong;
+  document.getElementById('accuracyDisplay').textContent=total>0?Math.round(correct/total*100)+'%':'--%';
+  document.getElementById('streakDisplay').textContent='🔥 '+streak;
+}
+
+function endGame(){
+  gameActive=false;gameStarted=false;
+  clearTimer();
+  document.getElementById('mainBtn').textContent='PLAY AGAIN';
+  document.getElementById('answerInput').disabled=true;
+  document.getElementById('progressBar').style.width='100%';
+  const total=correct+wrong;
+  const acc=total>0?Math.round(correct/total*100):0;
+  const stars=acc>=90?'⭐⭐⭐':acc>=70?'⭐⭐':acc>=50?'⭐':'';
+  const title=acc>=90?'CALCULATION KING!':acc>=70?'Excellent Work!':acc>=50?'Good Effort!':'Keep Practicing!';
+  document.getElementById('resultStars').textContent=stars;
+  document.getElementById('resultTitle').textContent=title;
+  document.getElementById('resultScoreBig').textContent=score.toLocaleString();
+  document.getElementById('resultBreakdown').innerHTML=`
+    <div class="result-stat"><div class="result-stat-num" style="color:var(--green)">${correct}</div><div class="result-stat-label">Correct</div></div>
+    <div class="result-stat"><div class="result-stat-num" style="color:var(--red)">${wrong}</div><div class="result-stat-label">Wrong</div></div>
+    <div class="result-stat"><div class="result-stat-num" style="color:var(--cyan)">${acc}%</div><div class="result-stat-label">Accuracy</div></div>
+    <div class="result-stat"><div class="result-stat-num" style="color:var(--gold)">🔥${maxStreak}</div><div class="result-stat-label">Best Streak</div></div>
+  `;
+  document.getElementById('resultOverlay').classList.remove('hidden');
+  renderLeaderboard();
+}
+
+function closeResult(){
+  document.getElementById('resultOverlay').classList.add('hidden');
+  document.getElementById('mainBtn').textContent='START';
+  document.getElementById('questionText').textContent='Press Start to Begin';
+  document.getElementById('feedbackText').textContent='';
+  document.getElementById('progressBar').style.width='0%';
+  document.getElementById('questionCount').textContent='Question 0 / 10';
+  document.getElementById('timerDisplay').textContent='15';
+  score=0;correct=0;wrong=0;streak=0;maxStreak=0;questionCount=0;
+  updateStats();
+}
+
+function goLeaderboard(){
+  document.getElementById('resultOverlay').classList.add('hidden');
+  scrollTo('leaderboard');
+}
+
+function startTopic(t){
+  setMode(t,t);
+  scrollTo('practice');
+}
+
+// ---- HELPERS ----
+function scrollTo(id){ document.getElementById(id).scrollIntoView({behavior:'smooth'}); }
+
+// ---- INIT ----
+window.onload=function(){
+  renderLeaderboard();
+  // Animate hero stats
+  animateNum('heroTotalStudents',0,247,2000);
+  animateNum('heroQSolved',0,12840,2500);
+};
+
+function animateNum(id,from,to,dur){
+  const el=document.getElementById(id);
+  const step=(to-from)/(dur/16);
+  let cur=from;
+  const int=setInterval(()=>{
+    cur=Math.min(cur+step,to);
+    el.textContent=Math.floor(cur).toLocaleString();
+    if(cur>=to)clearInterval(int);
+  },16);
+}
+
+// Nav active update on scroll
+window.addEventListener('scroll',()=>{
+  const sections=['hero','topics','practice','vedic','leaderboard','memory'];
+  const tabs=document.querySelectorAll('.nav-tab');
+  let current='hero';
+  sections.forEach(s=>{
+    const el=document.getElementById(s);
+    if(el&&window.scrollY>=el.offsetTop-100) current=s;
+  });
+  tabs.forEach((t,i)=>{ t.classList.toggle('active', sections[i]===current); });
+});
+</script>
+</body>
+</html>
